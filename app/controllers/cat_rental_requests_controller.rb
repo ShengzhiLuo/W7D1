@@ -1,7 +1,12 @@
 class CatRentalRequestsController < ApplicationController
+  before_action :require_logged_in, only: [:deny, :approve]
   def approve
-    current_cat_rental_request.approve!
-    redirect_to cat_url(current_cat)
+    if current_user == current_cat.owner
+      current_cat_rental_request.approve!
+      redirect_to cat_url(current_cat)
+    else
+      redirect_to cats_url
+    end
   end
 
   def create
@@ -15,8 +20,12 @@ class CatRentalRequestsController < ApplicationController
   end
 
   def deny
-    current_cat_rental_request.deny!
-    redirect_to cat_url(current_cat)
+    if current_user == current_cat.owner
+      current_cat_rental_request.deny!
+      redirect_to cat_url(current_cat)
+    else
+      redirect_to cats_url
+    end
   end
 
   def new

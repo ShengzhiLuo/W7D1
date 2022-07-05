@@ -17,6 +17,10 @@ class User < ApplicationRecord
     validates :user_name, :session_token, uniqueness: true
     validates :password, length: { minimum: 6 }, allow_nil: true
 
+    has_many :cats,
+        foreign_key: :user_id,
+        class_name: :Cat
+
     def ensure_session_token
         self.session_token ||= SecureRandom::urlsafe_base64
     end

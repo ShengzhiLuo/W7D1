@@ -3,6 +3,7 @@
   <td><%= req.end_date %></td>
   <td>
     <% if req.pending? %>
+      <% if current_user == current_cat.owner%>
         <form action="<%= approve_cat_rental_request_url(req) %>" method="post">
           <input
             type="hidden"
@@ -17,6 +18,7 @@
             value="<%= form_authenticity_token %>">
           <input type="submit" value="Deny">
         </form>
+        <% end %>
     <% else %>
       <%= req.status %>
     <% end %>
