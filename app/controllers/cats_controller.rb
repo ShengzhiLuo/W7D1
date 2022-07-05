@@ -26,6 +26,8 @@ class CatsController < ApplicationController
     end
   end
 
+  
+
   def edit
     @cat = Cat.find(params[:id])
     if current_user == @cat.owner
