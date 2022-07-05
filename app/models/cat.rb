@@ -13,7 +13,7 @@
 #  user_id     :integer          not null
 #
 require 'action_view'
-
+#test
 class Cat < ApplicationRecord
   include ActionView::Helpers::DateHelper
 
